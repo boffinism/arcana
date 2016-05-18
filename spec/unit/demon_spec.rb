@@ -1,15 +1,15 @@
-require_relative '../../lib/warlock'
+require_relative '../../lib/arcana/demon'
 
-RSpec.describe Warlock do
-  subject(:warlock) { Warlock.new }
+RSpec.describe Arcana::Demon do
+  subject(:demon) { Arcana::Demon.new }
 
-  describe '#add_tome' do
+  describe '#assimilate' do
     let(:tome_class) { Class.new }
 
     it 'adds the tome to the available tomes' do
-      warlock.add_tome(tome_class)
+      demon.assimilate(tome_class)
 
-      expect(warlock.tomes).to eq([tome_class])
+      expect(demon.tomes).to eq([tome_class])
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe Warlock do
     let(:refinements) { double :refinements }
 
     before do
-      warlock.add_tome tome
+      demon.assimilate tome
 
       expect(tome).to receive(:get_category).with(:abra).and_return(:type)
       expect(tome).to receive(:get_category).with(:cadabra).and_return(:selector)
@@ -37,23 +37,23 @@ RSpec.describe Warlock do
     end
 
     it 'creates an array of categorised words' do
-      warlock.cast 'abra cadabra miasma phantasma'
+      demon.cast 'abra cadabra miasma phantasma'
 
-      expect(warlock.words).to eq [{ category: :type, word: :abra, tome: tome },
-                                   { category: :selector, word: :cadabra, tome: tome },
-                                   { category: :action, word: :miasma, tome: tome },
-                                   { category: :refinement, word: :phantasma, tome: tome }]
+      expect(demon.words).to eq [{ category: :type, word: :abra, tome: tome },
+                                 { category: :selector, word: :cadabra, tome: tome },
+                                 { category: :action, word: :miasma, tome: tome },
+                                 { category: :refinement, word: :phantasma, tome: tome }]
     end
 
     it 'creates an array of semantic blocks' do
-      warlock.cast 'abra cadabra miasma phantasma'
+      demon.cast 'abra cadabra miasma phantasma'
 
-      expect(warlock.semantic_blocks).to eq [{ block_type: :object,
-                                               type: { word: :abra, tome: tome },
-                                               selectors: [{ word: :cadabra, tome: tome }] },
-                                             { block_type: :verb,
-                                               action: { word: :miasma, tome: tome },
-                                               refinements: [{ word: :phantasma, tome: tome }] }]
+      expect(demon.semantic_blocks).to eq [{ block_type: :object,
+                                             type: { word: :abra, tome: tome },
+                                             selectors: [{ word: :cadabra, tome: tome }] },
+                                           { block_type: :verb,
+                                             action: { word: :miasma, tome: tome },
+                                             refinements: [{ word: :phantasma, tome: tome }] }]
     end
 
     it 'asks the tome to invoke each word appropriately' do
@@ -65,7 +65,7 @@ RSpec.describe Warlock do
         .and_return refinements
       expect(tome).to receive(:invoke_action).with(:miasma, refinements, selectored_type)
 
-      warlock.cast 'abra cadabra miasma phantasma'
+      demon.cast 'abra cadabra miasma phantasma'
     end
   end
 end
