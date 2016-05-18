@@ -9,7 +9,9 @@ RSpec.describe 'Cast a spell using a tome:' do
     end
 
     let(:tree_lore_class) do
-      Class.new(Arcana::Tome) do
+      Class.new do
+        extend Arcana::Tome
+
         type :arboria, -> { Tree.all }
         selector :minimis, -> (t) { t.where(size: :small) }
         action :gorgal, -> (rs, o) { o.update_all(size: rs[:size]) if rs[:size] }

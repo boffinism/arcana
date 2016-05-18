@@ -1,12 +1,13 @@
 #Arcana
 Arcana lets you build spells into your Ruby apps. That is to say, it lets you define words using lambdas, such that strings of those words, if ordered correctly, cause those lambdas to execute.
 
-Arcana has two components - **Tomes**, which you subclass to define spell words, and a **Demon** (_not_ a daemon), which can parse a spell and execute the logic defined in the Tome.
+Arcana has two components - **Tomes**, which you extend to define spell words, and a **Demon** (_not_ a daemon), which can parse a spell and execute the logic defined in the Tome.
 
 Still confused? Let's try an example. Suppose you define a new Tome called `TreeLore`, that looks like this:
 
 ```ruby
-class TreeLore < Arcana::Tome
+class TreeLore
+  extend Arcana::Tome
   type :arboria, -> { Tree.all }
   selector :minimis, -> (t) { t.where(size: :small) }
   action :gorgal, -> (rs, o) { o.update_all(size: rs[:size]) if rs[:size] }
