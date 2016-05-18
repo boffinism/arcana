@@ -25,7 +25,7 @@ RSpec.describe Arcana::Demon do
 
     let(:invoked_type) { double :invoked_type }
     let(:selectored_type) { double :selectored_type }
-    let(:refinements) { double :refinements }
+    let(:refinements) { { some: :refinement } }
 
     before do
       demon.assimilate tome
@@ -61,8 +61,11 @@ RSpec.describe Arcana::Demon do
         .and_return invoked_type
       expect(tome).to receive(:invoke_selector).with(:cadabra, invoked_type)
         .and_return selectored_type
-      expect(tome).to receive(:invoke_refinement).with(:phantasma, {})
-        .and_return refinements
+      expect(tome).to receive(:invoke_refinement) do |word_name, base_refinement|
+        expect(word_name).to eq :phantasma
+        expect(base_refinement).to eq({})
+        base_refinement.merge! refinements
+      end
       expect(tome).to receive(:invoke_action).with(:miasma, refinements, selectored_type)
 
       demon.cast 'abra cadabra miasma phantasma'

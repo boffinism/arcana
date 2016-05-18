@@ -11,7 +11,7 @@ class TreeLore
   type :arboria, -> { Tree.all }
   selector :minimis, -> (t) { t.where(size: :small) }
   action :gorgal, -> (rs, o) { o.update_all(size: rs[:size]) if rs[:size] }
-  refinement :grandis, -> (rs) { rs.merge(size: :large) }
+  refinement :grandis, -> (rs) { rs[:size] = :large }
 end
 ```
 
@@ -48,7 +48,7 @@ Selectors are methods that can be chained to a type to alter it. They should acc
 These are the things that affect an object. They do not need to return a value, but they should accept two or more arguments - a hash of refinements (see below), and the object(s) to affect.
 
 ###Refinements
-Refinements are used to build an option hash to pass to an action to modify it. They should accept and return a hash.
+Refinements are used to build an option hash to pass to an action to modify it. They should accept a hash to which they can add key-value pairs.
 
 ##Parsing spells
 The Demon reads spells by breaking them into semantic blocks. There are two types of semantic block, an Object and a Verb (named after the building blocks of sentences - the Subject is the Demon itself). A valid spell comprises one or more Objects followed by a Verb.

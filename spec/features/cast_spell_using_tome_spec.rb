@@ -15,7 +15,7 @@ RSpec.describe 'Cast a spell using a tome:' do
         type :arboria, -> { Tree.all }
         selector :minimis, -> (t) { t.where(size: :small) }
         action :gorgal, -> (rs, o) { o.update_all(size: rs[:size]) if rs[:size] }
-        refinement :grandis, -> (rs) { rs.merge(size: :large) }
+        refinement :grandis, -> (rs) { rs[:size] = :large }
       end
     end
 

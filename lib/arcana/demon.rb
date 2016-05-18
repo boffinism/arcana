@@ -100,10 +100,10 @@ module Arcana
     def invoke_verb_block(block, invoked_objects)
       action_word = block[:action]
 
-      refinements = {}
-
-      block[:refinements].each do |refinement_word|
-        refinements = refinement_word[:tome].invoke_refinement(refinement_word[:word], refinements)
+      refinements = {}.tap do |rs|
+        block[:refinements].each do |refinement_word|
+          refinement_word[:tome].invoke_refinement(refinement_word[:word], rs)
+        end
       end
 
       action_word[:tome].invoke_action(action_word[:word], refinements, *invoked_objects)
