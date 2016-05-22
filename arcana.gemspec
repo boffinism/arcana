@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Arcana::VERSION
   s.authors     = ['Patrick Gleeson']
   s.email       = ['hello@patrickgleeson.com']
-  s.homepage    = 'https://github.com/patrick-gleeson'
+  s.homepage    = 'https://github.com/boffinism/arcana'
   s.summary     = 'A DSL for defining spells and engine for casting them'
   s.description = 'Arcana lets you create Tomes defining the meaning of spell words,
                    and a Demon that parses and executes a given spell'
