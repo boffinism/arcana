@@ -30,7 +30,7 @@ module Arcana
 
     def get_word_data(word)
       tomes.each do |tome|
-        if (category = tome.get_category(word))
+        if (category = tome.get_category_of(word))
           return { category: category, word: word, tome: tome }
         end
       end

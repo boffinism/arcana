@@ -12,28 +12,36 @@ RSpec.describe Arcana::Tome do
   describe '.type & .types' do
     it 'stores a symbol against a lambda' do
       subject.type :identifier, lambda
-      expect(subject.types).to eq(identifier: lambda)
+      expect(subject.types).to eq([{ word: :identifier,
+                                     category: :type,
+                                     lambda: lambda }])
     end
   end
 
   describe '.selector & .selectors' do
     it 'stores a symbol against a lambda' do
       subject.selector :identifier, lambda
-      expect(subject.selectors).to eq(identifier: lambda)
+      expect(subject.selectors).to eq([{ word: :identifier,
+                                         category: :selector,
+                                         lambda: lambda }])
     end
   end
 
   describe '.action & .actions' do
     it 'stores a symbol against a lambda' do
       subject.action :identifier, lambda
-      expect(subject.actions).to eq(identifier: lambda)
+      expect(subject.actions).to eq([{ word: :identifier,
+                                       category: :action,
+                                       lambda: lambda }])
     end
   end
 
   describe '.refinement & .refinements' do
     it 'stores a symbol against a lambda' do
       subject.refinement :identifier, lambda
-      expect(subject.refinements).to eq(identifier: lambda)
+      expect(subject.refinements).to eq([{ word: :identifier,
+                                           category: :refinement,
+                                           lambda: lambda }])
     end
   end
 
@@ -73,17 +81,17 @@ RSpec.describe Arcana::Tome do
     end
   end
 
-  describe '.get_category' do
+  describe '.get_category_of' do
     it 'returns the category of the given word if found' do
       subject.type :foo, lambda
       subject.selector :bar, lambda
-      expect(subject.get_category(:bar)).to eq :selector
+      expect(subject.get_category_of(:bar)).to eq :selector
     end
 
     it 'returns nil if word not found found' do
       subject.type :foo, lambda
       subject.selector :bar, lambda
-      expect(subject.get_category(:czar)).to eq nil
+      expect(subject.get_category_of(:czar)).to eq nil
     end
   end
 end

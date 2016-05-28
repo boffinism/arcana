@@ -16,7 +16,7 @@ RSpec.describe Arcana::Demon do
   describe '#cast' do
     let(:tome) do
       double :tome,
-             get_category: :type,
+             get_category_of: :type,
              invoke_type: nil,
              invoke_selector: nil,
              invoke_refinement: nil,
@@ -30,10 +30,10 @@ RSpec.describe Arcana::Demon do
     before do
       demon.assimilate tome
 
-      expect(tome).to receive(:get_category).with(:abra).and_return(:type)
-      expect(tome).to receive(:get_category).with(:cadabra).and_return(:selector)
-      expect(tome).to receive(:get_category).with(:miasma).and_return(:action)
-      expect(tome).to receive(:get_category).with(:phantasma).and_return(:refinement)
+      expect(tome).to receive(:get_category_of).with(:abra).and_return(:type)
+      expect(tome).to receive(:get_category_of).with(:cadabra).and_return(:selector)
+      expect(tome).to receive(:get_category_of).with(:miasma).and_return(:action)
+      expect(tome).to receive(:get_category_of).with(:phantasma).and_return(:refinement)
     end
 
     it 'creates an array of categorised words' do
