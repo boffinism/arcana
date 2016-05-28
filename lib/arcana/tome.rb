@@ -49,36 +49,37 @@ module Arcana
     end
 
     def get_category_of(word)
-      selected = find_word_details(word)
-      selected[:category] if selected
+      definition = get_definition_of(word)
+      definition.category if definition
     end
 
     private
 
-    def assign(category, word, lambda)
+    def assign(category, word, lambda, description = nil)
       initialize_all
-      @word_details << { category: category,
-                         word: word,
-                         lambda: lambda }
+      @definitions << Definition.new(category: category,
+                                     word: word,
+                                     lambda: lambda,
+                                     description: description)
     end
 
     def get_all_that_are(category)
       initialize_all
-      @word_details.select { |w| w[:category] == category }
+      @definitions.select { |d| d.category == category }
     end
 
     def invoke(word, *args)
       initialize_all
-      selected = find_word_details(word)
-      selected[:lambda].call(*args)
+      definition = get_definition_of(word)
+      definition.lambda.call(*args)
     end
 
-    def find_word_details(word)
-      @word_details.select { |w| w[:word] == word }.first
+    def get_definition_of(word)
+      @definitions.select { |d| d.word == word }.first
     end
 
     def initialize_all
-      @word_details ||= []
+      @definitions ||= []
     end
   end
 end

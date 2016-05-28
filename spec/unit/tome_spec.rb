@@ -9,39 +9,35 @@ RSpec.describe Arcana::Tome do
     end
   end
 
-  describe '.type & .types' do
+  describe '.type' do
     it 'stores a symbol against a lambda' do
       subject.type :identifier, lambda
-      expect(subject.types).to eq([{ word: :identifier,
-                                     category: :type,
-                                     lambda: lambda }])
+      expect(subject.types.first.word).to eq :identifier
+      expect(subject.types.first.lambda).to eq lambda
     end
   end
 
-  describe '.selector & .selectors' do
+  describe '.selector' do
     it 'stores a symbol against a lambda' do
       subject.selector :identifier, lambda
-      expect(subject.selectors).to eq([{ word: :identifier,
-                                         category: :selector,
-                                         lambda: lambda }])
+      expect(subject.selectors.first.word).to eq :identifier
+      expect(subject.selectors.first.lambda).to eq lambda
     end
   end
 
-  describe '.action & .actions' do
+  describe '.action' do
     it 'stores a symbol against a lambda' do
       subject.action :identifier, lambda
-      expect(subject.actions).to eq([{ word: :identifier,
-                                       category: :action,
-                                       lambda: lambda }])
+      expect(subject.actions.first.word).to eq :identifier
+      expect(subject.actions.first.lambda).to eq lambda
     end
   end
 
-  describe '.refinement & .refinements' do
+  describe '.refinement' do
     it 'stores a symbol against a lambda' do
       subject.refinement :identifier, lambda
-      expect(subject.refinements).to eq([{ word: :identifier,
-                                           category: :refinement,
-                                           lambda: lambda }])
+      expect(subject.refinements.first.word).to eq :identifier
+      expect(subject.refinements.first.lambda).to eq lambda
     end
   end
 
