@@ -1,31 +1,31 @@
 module Arcana
   module Tome
-    def type(word, lambda)
-      assign(:type, word, lambda)
+    def type(word, lambda, description = nil)
+      assign(:type, word, lambda, description)
     end
 
     def invoke_type(word)
       invoke word
     end
 
-    def selector(word, lambda)
-      assign(:selector, word, lambda)
+    def selector(word, lambda, description = nil)
+      assign(:selector, word, lambda, description)
     end
 
     def invoke_selector(word, object)
       invoke word, object
     end
 
-    def action(word, lambda)
-      assign(:action, word, lambda)
+    def action(word, lambda, description = nil)
+      assign(:action, word, lambda, description)
     end
 
     def invoke_action(word, refinements, *objects)
       invoke word, refinements, *objects
     end
 
-    def refinement(word, lambda)
-      assign(:refinement, word, lambda)
+    def refinement(word, lambda, description = nil)
+      assign(:refinement, word, lambda, description)
     end
 
     def invoke_refinement(word, existing_refinements)
@@ -55,7 +55,7 @@ module Arcana
 
     private
 
-    def assign(category, word, lambda, description = nil)
+    def assign(category, word, lambda, description)
       initialize_all
       @definitions << Definition.new(category: category,
                                      word: word,
