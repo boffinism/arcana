@@ -61,3 +61,19 @@ Each semantic block comprises one or more words. An Object is made up of a Type 
 ```
 
 Note that the Demon can't guarantee that just because a spell is structurally valid it will be possible to execute it. For example, the Action in the above example must work when given two Objects.
+
+## Definitions 
+You can add an optional 3rd parameter to your definitions, which is a description string, e.g.:
+
+```ruby
+class FlameLore
+  extend Arcana::Tome
+
+  type :silvin, -> { ... }, 'Wooden things'
+  type :pyrin, -> { ... }, 'Flames'
+end
+```
+If you then call `FlameLore.types` you will be returned an array of `Arcana::Definition` objects with the attributes `word`, `lambda`, `category` and `description`. Each Definition implements a `#to_s` method that returns a description sentence of the form:
+
+` 'word (category): description'`
+
