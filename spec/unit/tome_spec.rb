@@ -12,32 +12,32 @@ RSpec.describe Arcana::Tome do
   describe '.type' do
     it 'stores a symbol against a lambda' do
       subject.type :identifier, lambda
-      expect(subject.types.first.word).to eq :identifier
-      expect(subject.types.first.lambda).to eq lambda
+      expect(subject.definitions.first.word).to eq :identifier
+      expect(subject.definitions.first.lambda).to eq lambda
     end
   end
 
   describe '.selector' do
     it 'stores a symbol against a lambda' do
       subject.selector :identifier, lambda
-      expect(subject.selectors.first.word).to eq :identifier
-      expect(subject.selectors.first.lambda).to eq lambda
+      expect(subject.definitions.first.word).to eq :identifier
+      expect(subject.definitions.first.lambda).to eq lambda
     end
   end
 
   describe '.action' do
     it 'stores a symbol against a lambda' do
       subject.action :identifier, lambda
-      expect(subject.actions.first.word).to eq :identifier
-      expect(subject.actions.first.lambda).to eq lambda
+      expect(subject.definitions.first.word).to eq :identifier
+      expect(subject.definitions.first.lambda).to eq lambda
     end
   end
 
   describe '.refinement' do
     it 'stores a symbol against a lambda' do
       subject.refinement :identifier, lambda
-      expect(subject.refinements.first.word).to eq :identifier
-      expect(subject.refinements.first.lambda).to eq lambda
+      expect(subject.definitions.first.word).to eq :identifier
+      expect(subject.definitions.first.lambda).to eq lambda
     end
   end
 

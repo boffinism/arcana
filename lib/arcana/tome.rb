@@ -32,20 +32,8 @@ module Arcana
       invoke word, existing_refinements
     end
 
-    def types
-      get_all_that_are :type
-    end
-
-    def selectors
-      get_all_that_are :selector
-    end
-
-    def actions
-      get_all_that_are :action
-    end
-
-    def refinements
-      get_all_that_are :refinement
+    def definitions
+      @definitions
     end
 
     def get_category_of(word)
@@ -61,11 +49,6 @@ module Arcana
                                      word: word,
                                      lambda: lambda,
                                      description: description)
-    end
-
-    def get_all_that_are(category)
-      initialize_all
-      @definitions.select { |d| d.category == category }
     end
 
     def invoke(word, *args)

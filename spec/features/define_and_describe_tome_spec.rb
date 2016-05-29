@@ -15,10 +15,7 @@ RSpec.describe 'Define and describe a Tome:' do
     end
 
     it 'provides a definition of the spells' do
-      output = flame_lore_class.types.map(&:to_s) +
-               flame_lore_class.selectors.map(&:to_s) +
-               flame_lore_class.actions.map(&:to_s) +
-               flame_lore_class.refinements.map(&:to_s)
+      output = flame_lore_class.definitions.map(&:to_s)
 
       expected_output = ['silvin (type): Wooden things',
                          'pyrin (type): Flames',

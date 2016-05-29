@@ -73,7 +73,9 @@ class FlameLore
   type :pyrin, -> { ... }, 'Flames'
 end
 ```
-If you then call `FlameLore.types` you will be returned an array of `Arcana::Definition` objects with the attributes `word`, `lambda`, `category` and `description`. Each Definition implements a `#to_s` method that returns a description sentence of the form:
+If you then call `FlameLore.definitions` you will be returned an array of `Arcana::Definition` objects with the attributes `word`, `lambda`, `category` and `description`. Each Definition implements a `#to_s` method that returns a description sentence of the form:
 
-` 'word (category): description'`
+```ruby 
+'word (category): description'
+```
 
