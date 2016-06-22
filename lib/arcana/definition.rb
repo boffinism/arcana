@@ -2,7 +2,7 @@ module Arcana
   class Definition
     attr_accessor :word, :category, :lambda, :description
 
-    def initialize(word: nil, category: nil, lambda: nil, description: nil)
+    def initialize(word = nil, category = nil, lambda = nil, description = nil)
       @word = word
       @category = category
       @lambda = lambda

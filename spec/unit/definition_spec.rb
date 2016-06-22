@@ -2,10 +2,7 @@ require_relative '../../lib/arcana/definition'
 
 RSpec.describe Arcana::Definition do
   subject do
-    Arcana::Definition.new(word: 'word',
-                           category: 'category',
-                           lambda: 'lambda',
-                           description: 'description')
+    Arcana::Definition.new('word', 'category', 'lambda', 'description')
   end
 
   describe '#word' do
@@ -34,9 +31,7 @@ RSpec.describe Arcana::Definition do
 
   describe '#to_s' do
     it 'returns something basic when there is no description' do
-      definition = Arcana::Definition.new(word: 'word',
-                                          category: 'category',
-                                          lambda: 'lambda')
+      definition = Arcana::Definition.new('word', 'category', 'lambda')
       expect(definition.to_s).to eq 'word (category)'
     end
 

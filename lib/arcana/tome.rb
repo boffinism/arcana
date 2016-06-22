@@ -45,10 +45,7 @@ module Arcana
 
     def assign(category, word, lambda, description)
       initialize_all
-      @definitions << Definition.new(category: category,
-                                     word: word,
-                                     lambda: lambda,
-                                     description: description)
+      @definitions << Definition.new(word, category, lambda, description)
     end
 
     def invoke(word, *args)
